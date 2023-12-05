@@ -1,10 +1,10 @@
 package com.ec.tour.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ec.tour.domain.Difficulty;
-import com.ec.tour.domain.Region;
 import com.ec.tour.domain.Tour;
 import com.ec.tour.domain.TourPackage;
 import com.ec.tour.repository.TourPackageRepository;
@@ -37,14 +37,11 @@ public class TourService {
      * @param region region
      * @return Tour Entity
      */
-    public Tour createTour(String title, String description, String blurb, Integer price,
-                           String duration, String bullets,
-                           String keywords, String tourPackageName, Difficulty difficulty, Region region ) {
+    public Tour createTour(String title, String tourPackageName, Map<String, String> details) {
         TourPackage tourPackage = tourPackageRepository.findByName(tourPackageName)
         		.orElseThrow(() -> new RuntimeException("Tour Package does not exist: " + tourPackageName));
 
-        return tourRepository.save(new Tour(title, description,blurb,
-        		price, duration, bullets, keywords, tourPackage, difficulty, region));
+        return tourRepository.save(new Tour(title, tourPackage, details));
     }
 
     /**

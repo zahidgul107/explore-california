@@ -1,21 +1,21 @@
 package com.ec.tour.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * A Classification of Tours.
  *
  * Created by Mary Ellen Bowman
  */
-@Entity
+@Document
 public class TourPackage {
+	
 	@Id
     private String code;
 
-    @Column
     private String name;
 
     protected TourPackage() {

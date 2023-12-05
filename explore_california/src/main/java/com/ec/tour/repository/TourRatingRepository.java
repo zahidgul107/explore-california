@@ -12,12 +12,12 @@ import com.ec.tour.domain.TourRating;
 import com.ec.tour.domain.TourRatingPk;
 
 @RepositoryRestResource(exported = false)
-public interface TourRatingRepository extends JpaRepository<TourRating, TourRatingPk> {
+public interface TourRatingRepository extends JpaRepository<TourRating, String> {
 	
-	List<TourRating> findByPkTourId(Integer tourId);
+	List<TourRating> findByTourId(String tourId);
 	
-	Optional<TourRating> findByPkTourIdAndPkCustomerId(Integer tourId, Integer customerId);
+	Optional<TourRating> findByTourIdAndCustomerId(String tourId, Integer customerId);
 	
-	Page<TourRating> findByPkTourId(Integer tourId, Pageable pageable);
+	Page<TourRating> findByTourId(String tourId, Pageable pageable);
 
 }
